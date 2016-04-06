@@ -3,18 +3,18 @@ import os
 
 from django.shortcuts import render
 from rest_framework import status
-from rest_framework.renderers import BrowsableAPIRenderer, JSONRenderer
+from rest_framework.renderers import BrowsableAPIRenderer, JSONRenderer, TemplateHTMLRenderer
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
 
 class HotdAPI(APIView):
 
-	renderer_classes = [JSONRenderer]
+	renderer_classes = [TemplateHTMLRenderer]
 
 	def get(self, request, format=None):
 		data = request.query_params
 		try:
-			return Response(data=data, status=status.HTTP_200_OK)
+			return Response(data=data, template_name='index.html')
 		except:
 			return Response('Bad request', status=status.HTTP_400_BAD_REQUEST)

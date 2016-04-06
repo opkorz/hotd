@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% load static %}
+{% get_static_prefix as STATIC_PREFIX %}
+
+{% block body %}
+  <div class="a">
+    <img src="{{ STATIC_PREFIX }}/images/ironman-left.png" class="ironman">
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class= "col-md-2 col-xs-2 col-md-offset-5 col-xs-offset-5 selfie">
+        <img src="{{ STATIC_PREFIX }}/images/selfie.jpg" class="img-circle">
+      </div>
+      <div class="col-md-8 col-xs-8 col-md-offset-2 col-xs-offset-2 me">
+        <h1 class="ironman">I am IRON MAN!</h1>
+        <p>
+          Hahahahaha! Nah I'm kidding. I'm Rod Xander Bondoc, but call me Xander or Txad, pronounced as 'Chad', if you feel like it. I'm your average nerd, geek and techie. I'm a developer of sorts, most of the time an analytics guy. I develop
+          tools for different kinds of shit.
+        </p>
+        <p>
+          I play <a href="http://www.dotabuff.com/players/94208651">Dota 2</a>, I love beer, I like to <a href="https://www.facebook.com/rodxanderbondoc">make new friends</a>, I like to explore new things, and I would love to have a travel buddy. I haven't been active in life, not until now, so ping me up if you want me to join you and do some crazy stuff.
+        </p>
+        <p>
+          A new year, a new life for me. Let's learn stuff! Will be adding something here soon.:)
+        </p>
+      </div>
+    </div>
+  </div>
+  {% block js %}
+  <script type="text/javascript">
+    $( document ).ready(function() {
+      animateDiv();
+    });
+    var prev = 0;
+    function makeNewPosition(){
+      var h = $(window).height() - 50;
+      var w = $(window).width() - 50;
+      
+      var nh = Math.floor(Math.random() * h);
+      var nw = Math.floor(Math.random() * w);
+      return [nh,nw];    
+    }
+
+    function animateDiv(){
+      var newq = makeNewPosition();
+      if (prev < newq[1]) {
+        $('img.ironman').attr('src', "{{ STATIC_PREFIX }}/images/ironman-left.png");
+      }
+      else if (prev > newq[1]) {
+        $('img.ironman').attr('src', "{{ STATIC_PREFIX }}/images/ironman-right.png");
+      }
+      $('img.ironman').animate({top: newq[0], left: newq[1]}, {
+        duration: 2000,
+        complete: function(){
+          animateDiv();        
+        }
+      });
+      prev = newq[1];
+    };
+  </script>
+  {% endblock %}
+{% endblock %}

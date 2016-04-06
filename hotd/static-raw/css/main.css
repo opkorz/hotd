@@ -1,0 +1,28 @@
+body {
+  font-family: 'Raleway';
+  font-size: 18px;
+}
+
+.ironman {
+  text-align: center;
+}
+
+.container {
+  margin-top: 7em;
+}
+
+.img-circle {
+  height: 180px;
+  width: 196px;
+}
+
+.me {
+  margin-top: 2em;
+}
+
+img.ironman {
+  width: 40px;
+  height: 25px;
+  background-image: url('../images/ironman-left.png');
+  position:fixed;  
+}
